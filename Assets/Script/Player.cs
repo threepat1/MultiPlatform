@@ -33,20 +33,20 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.Space) && jumpTimer<= maxJumpTime)
+        if (Input.GetKey(KeyCode.Space) && jumpTimer <= maxJumpTime)
         {
             jumping = true;
-            rb.AddForce(Vector2.up*thrust);
+            rb.AddForce(Vector2.up * thrust);
         }
         if (jumping)
         {
             jumpTimer += Time.deltaTime;
         }
-        if(rb.velocity.y < -0.1f || jumpTimer >= maxJumpTime)
+        if (rb.velocity.y < -0.1f || jumpTimer >= maxJumpTime)
         {
             Physics.gravity = new Vector3(0, -25f, 0);
         }
-        if(jumpTimer > 2f)
+        if (jumpTimer > 2f)
         {
             ResetJump();
         }
@@ -62,11 +62,11 @@ public class Player : MonoBehaviour
        if(col.collider.gameObject.tag == "Floor")
         {
             ResetJump();
-        }
-       if(col.collider.gameObject.tag == "Bounce")
-        {
-            jumping = true;
-            rb.AddForce(Vector2.up * thrust);
-        }
+        }      
+    }
+    public void Jump()
+    {
+        jumping = true;
+        rb.AddForce(Vector2.up * thrust);
     }
 }
